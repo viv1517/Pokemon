@@ -1,0 +1,68 @@
+[
+    {
+        "name": "Pikachu",
+        "pokeType": "Electric",
+        "id": 1,
+        "weightPounds": 700,
+        "moveSet": [
+            "tackle",
+            "charge",
+            "thunderBolt"
+        ]
+    },
+    {
+        "name": "Nate",
+        "pokeType": "Water",
+        "id": 2,
+        "weightPounds": 20,
+        "moveSet": [
+            "code",
+            "debug",
+            "test"
+        ]
+    },
+    {
+        "name": "Vivian",
+        "pokeType": "Fire",
+        "id": 3,
+        "weightPounds": 40,
+        "moveSet": [
+            "sleep",
+            "eat",
+            "run"
+        ]
+    },
+    {
+        "name": "Stompy",
+        "pokeType": "Earth",
+        "id": 4,
+        "weightPounds": 125,
+        "moveSet": [
+            "stomp",
+            "throw",
+            "punch"
+        ]
+    },
+    {
+        "name": "Grumpy",
+        "pokeType": "Air",
+        "id": 5,
+        "weightPounds": 10,
+        "moveSet": [
+            "yell",
+            "pout",
+            "cry"
+        ]
+    },
+    {
+        "name": "Sleepy",
+        "pokeType": "Bed",
+        "id": 5,
+        "weightPounds": 10,
+        "moveSet": [
+            "Snooze",
+            "Dream",
+            "Nap"
+        ]
+    }
+]

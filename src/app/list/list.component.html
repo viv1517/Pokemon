@@ -1,0 +1,6 @@
+<h1>Pokemon-ish!</h1>
+
+<ul class="pokeList">
+    <li class="pokeItem" *ngFor="let pokemon of (pokeSvc.getAll() | async)"><button routerLink="/details/{{pokemon.id}}" >{{pokemon.name}}</button></li>
+</ul>
+<router-outlet></router-outlet>
