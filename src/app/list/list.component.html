@@ -1,6 +1,24 @@
-<h1>Pokemon-ish!</h1>
+<body class="home">
+    <div class = 'body'>
+        <h1>Pokemon-ish!</h1>
+        <!-- <div class="something">
+            <div class="container" *ngFor="let pokelist of pokeList"><button class="item" routerLink="/details/{{pokelist.name}}" >{{pokelist.name}} <img src = {{pokelist.image}} alt="sprite"></button></div>
+        </div> -->
+    
+        <!-- <ul class="pokeList">
+            <div class="wrapper">
+                <li class="container" *ngFor="let pokelist of pokeList"><button class="item" routerLink="/details/{{pokelist.name}}" >{{pokelist.name}} <img src = {{pokelist.image}} alt="sprite"></button></li>
+            </div>
+            
+        </ul> -->
 
-<ul class="pokeList">
-    <li class="pokeItem" *ngFor="let pokemon of (pokeSvc.getAll() | async)"><button routerLink="/details/{{pokemon.id}}" >{{pokemon.name}}</button></li>
-</ul>
-<router-outlet></router-outlet>
+       
+        <div class="container">
+            <button *ngFor="let pokelist of pokeList" class="item" routerLink="/details/{{pokelist.name}}" >{{pokelist.name}} <img src = {{pokelist.image}} alt="sprite"></button>
+        </div>
+            
+      
+        <router-outlet></router-outlet>
+    </div>
+</body>
+

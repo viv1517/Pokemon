@@ -5,6 +5,8 @@ import { PokemonService } from '../services/pokemon.service';
 import { Pokemon } from '../pokemon';
 import pokeData from "../../pokemon.json";
 import { Location } from '@angular/common';
+import { pokedeets } from '../models/pokedeets';
+import { pokemodel } from '../models/pokemodel';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -12,30 +14,29 @@ import { Location } from '@angular/common';
   styleUrls: ['./pokemon-detail.component.scss']
 })
 export class PokemonDetailComponent {
-  public poke: Pokemon | undefined;
+  pokedeet: pokedeets | undefined;
+
   constructor(public pokeSvc: PokemonService,
              private route: ActivatedRoute,
              private location: Location){
   }
   ngOnInit(): void {
-    this.getPoke();
+    let pokeList: Observable<pokedeets>;
+    this.getPoke().subscribe(pokedeets => this.pokedeet = pokedeets);
+    // pokeList.forEach(pokemon => this.pokeSvc.getDetails(pokemon.name).subscribe())
+    
   }
 
-  getPoke(){
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.pokeSvc.getById(id)
-    .subscribe(poke => this.poke = poke);
+  getPoke():Observable<pokedeets>{
+    let name = this.route.snapshot.paramMap.get('name') ?? "";
+    let list = this.pokeSvc.getDetails(name);
+    return list;
   }
 
   goBack(){
     this.location.back();
   }
 
-  // this.id$ = route.params.pipe(
-  //   map((p) => p.id),
-  //   tap((p) => {
-  //     this.class = p;
-  //   })
-  // );
+
  
 }
