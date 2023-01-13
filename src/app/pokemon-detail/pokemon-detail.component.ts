@@ -23,7 +23,7 @@ export class PokemonDetailComponent {
   ngOnInit(): void {
     let pokeList: Observable<pokedeets>;
     this.getPoke().subscribe(pokedeets => this.pokedeet = pokedeets);
-    // pokeList.forEach(pokemon => this.pokeSvc.getDetails(pokemon.name).subscribe())
+    
     
   }
 
@@ -36,6 +36,8 @@ export class PokemonDetailComponent {
   goBack(){
     this.location.back();
   }
+
+
 
 
  

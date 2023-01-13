@@ -10,7 +10,7 @@ export class pokemodel{
         this.image = '';
     }
 
-    setImage(url: string){
-        this.image = url;
+    setImage(image: string){
+        this.image = image;
     }
 }

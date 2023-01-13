@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
-    PokemonDetailComponent
+    PokemonDetailComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

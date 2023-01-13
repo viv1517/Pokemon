@@ -1,0 +1,5 @@
+<p>pagination works!</p>
+
+<button *ngIf="this.currentPage>1" (click)="prevClicked.emit()">Previous</button> 
+<span><span *ngIf="this.currentPage>1">|</span>{{currentPage}}</span><span *ngIf="this.currentPage<52">|</span>
+<button *ngIf="this.currentPage<52" (click)="nextClicked.emit()">Next</button>
