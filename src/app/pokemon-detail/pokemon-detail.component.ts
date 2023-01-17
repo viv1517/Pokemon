@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { pokedeets } from '../models/pokedeets';
 import { pokemodel } from '../models/pokemodel';
 
+
 @Component({
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
@@ -18,9 +19,11 @@ export class PokemonDetailComponent {
 
   constructor(public pokeSvc: PokemonService,
              private route: ActivatedRoute,
-             private location: Location){
+             private location: Location,
+             private router: Router){
   }
   ngOnInit(): void {
+    const page = this.route.snapshot.queryParamMap.get('page');
     let pokeList: Observable<pokedeets>;
     this.getPoke().subscribe(pokedeets => this.pokedeet = pokedeets);
     

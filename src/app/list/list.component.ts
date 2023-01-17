@@ -1,10 +1,11 @@
 import { Pokemon } from '../pokemon';
-import { Component, getNgModuleById, Input } from '@angular/core';
+import { Component, ComponentFactoryResolver, getNgModuleById, Input } from '@angular/core';
 import { PokemonService } from "../services/pokemon.service";
 import { pokemodel } from '../models/pokemodel';
 import { paginatedPokeModel, pokedeets } from '../models/pokedeets';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map, Subscription, Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -14,9 +15,13 @@ import { Observable, map } from 'rxjs';
 export class ListComponent {
 
   pokemonPage?: paginatedPokeModel;
+  pokemonPageSub!: Subscription;
+  unsubscribe$ = new Subject<void>();
+  // pokemonPage$!: Subject<paginatedPokeModel>;
   paginationData!: {nextLink?: string, prevLink?: string, currentPage: number};
   constructor(public pokeSvc: PokemonService, 
-              private route: ActivatedRoute){
+              private route: ActivatedRoute,
+              private router: Router){
     
   }
   displayDetails(id: number){
@@ -25,9 +30,14 @@ export class ListComponent {
   
   ngOnInit(){
     let pageNum = Number(this.route.snapshot.queryParamMap.get("page") ?? "1");
-    this.paginationData = {currentPage: pageNum}
+    this.paginationData = {currentPage: pageNum};
     this.loadData(pageNum);
     
+  }
+
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   loadNext(){
@@ -47,17 +57,13 @@ export class ListComponent {
   }
 
   loadData(page?: number, limit?: number){
-    this.pokeSvc.getPokemon(page, limit).subscribe(pokemonPage => {
+    this.router.navigate(['.'], {queryParams: {page}});
+
+    this.pokemonPageSub = this.pokeSvc.getPokemon(page, limit).pipe(takeUntil(this.unsubscribe$)).subscribe(pokemonPage => {
       this.pokemonPage = pokemonPage
-      pokemonPage.pokeList.forEach(pokemon => {
-        
-        this.pokeSvc.getImages(pokemon.name).subscribe(image => {
-          console.log(pokemon);
-          
-          pokemon.setImage(image)
-        });
-      })
+      
     });
     
   }
+
 }

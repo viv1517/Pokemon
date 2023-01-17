@@ -18,9 +18,9 @@ button{
     font-weight: bold;
     width:200px;
     margin:20px;
-    background-color: lightgray;
+    background-color: white;
     text-shadow: -1px -1px black, 1px 1px white;
-    color: gray;
+    color: rgb(254, 243, 47);
     -webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
 	-o-border-radius: 7px;
@@ -49,7 +49,7 @@ button:active {
 	box-shadow: none;
 	position: relative;
 	top: .6em;
-    background-color: darkgray;
+    background-color: lightgray;
 }
 
 .home{

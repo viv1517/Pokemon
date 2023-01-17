@@ -1,12 +1,25 @@
-<div *ngIf="pokedeet" >
-    <p>Detail:</p>
-    <p>Name: {{pokedeet.name}}</p>
-    <p>Id: {{pokedeet.id}}</p>
-    <p>Weight: {{pokedeet.weight}}</p>
-    <p>Height: {{pokedeet.height}}</p>
-    <p>Image: <img src = {{pokedeet.image}} alt="sprite"></p>
+<div *ngIf="pokedeet" class="parent">
+    <h1 class="header">{{pokedeet.name | uppercase}} Details:</h1>
+    <div class="container">
+        <p>Name: {{pokedeet.name}}</p>
+        <p>Id: {{pokedeet.id}}</p>
+        <p>Weight: {{pokedeet.weight}}</p>
+        <p>Height: {{pokedeet.height}}</p>
+        <p> <img src = {{pokedeet.image}} alt="sprite"></p>
+        <br>
+        <br>
+        <br>
+        <div class="move-container">
+            <h3>Move </h3>
+            <p>Name: {{pokedeet.move[0].name}}</p>
+            <p>Accuracy: {{pokedeet.move[0].accuracy}}</p>
+            <p>Power: {{pokedeet.move[0].power}}</p>
+        </div>
+        
+    </div>
     <button type="button" (click)="goBack()">Go Back</button>
 </div>
+
 
 
 

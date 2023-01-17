@@ -1,4 +1,5 @@
 import { pokemodel } from "./pokemodel";
+import { pokeMoves } from "./pokeMoves";
 
 export class pokedeets{
     height: number;
@@ -6,12 +7,14 @@ export class pokedeets{
     weight: number;
     id: number;
     image: string;
-    constructor(height: number, name: string, weight: number, id: number, image: string){
+    move: pokeMoves[];
+    constructor(height: number, name: string, weight: number, id: number, image: string, move: pokeMoves[] = []){
         this.height = height;
         this.name = name;
         this.weight = weight;
         this.id = id;
         this.image = image;
+        this.move = move;
     }
 }
 
