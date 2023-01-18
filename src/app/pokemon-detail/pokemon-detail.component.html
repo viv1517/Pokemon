@@ -1,4 +1,5 @@
-<div *ngIf="pokedeet" class="parent" [ngStyle]="{'background-color':getColor(pokedeet.type[0])}">
+<body *ngIf="pokedeet"  [ngStyle]="{'background-image':getColorPallate(pokedeet.type)}">
+    
     <h1 class="header">{{pokedeet.name | uppercase}} Details:</h1>
     <div class="container">
         <p>Name: {{pokedeet.name}}</p>
@@ -20,8 +21,10 @@
         
     </div>
     <button type="button" (click)="goBack()">Go Back</button>
-</div>
+    
+</body>
 
 
+<!-- background-image: linear-gradient(to bottom right, red, yellow); -->
 
-<!-- [ngStyle]="{'color':getColor(pokedeet.type[1])}" -->
+<!-- class="parent" -->

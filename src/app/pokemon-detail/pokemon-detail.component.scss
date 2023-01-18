@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 .container{
-    // background-color: white;
+    background: linear-gradient(to bottom right, goldenrod, yellow,goldenrod);
+    z-index: 1000;
     background-color: rgb(200, 252, 135);
     width: 500px;
     display: flex;
@@ -35,6 +36,7 @@
 }
 
 .parent{
+    // margin: 100px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,4 +94,14 @@ button:active {
 h3{
     color: #A64253
     
+}
+
+body{
+    // margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #A64253;
+
 }

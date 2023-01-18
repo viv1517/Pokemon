@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, createPlatform, Input } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from '../services/pokemon.service';
@@ -37,8 +37,14 @@ export class PokemonDetailComponent {
     this.location.back();
   }
 
-  getColor(type: string){
-   
+  getColorPallate(type: any){
+    if (type.length == 1){
+      let color =  this.getColor(type[0]);
+      return "linear-gradient(to bottom right, "+color + ", " + color+")";
+    }
+    return this.get2Colors(type);
+  }
+   getColor(type: string){
     if (type === "normal"){
       return "gray"
     }
@@ -99,8 +105,16 @@ export class PokemonDetailComponent {
 
     
    }
+
+
+   get2Colors(type:any){
+    let color1 = this.getColor(type[0])
+    let color2 = this.getColor(type[1])
+    return "linear-gradient(to bottom right, "+color1 + ", " + color2+")"
+   }
+  
       
     
-  }
+}
  
 

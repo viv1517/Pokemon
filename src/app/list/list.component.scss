@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 
+
 .container{
     display: inline-block;
     width: 100%;
@@ -34,6 +35,15 @@ button{
     justify-content: center;
 }
 
+button:active {
+	box-shadow: none;
+	position: relative;
+	top: .6em;
+    background-color: lightgray;
+}
+
+
+
 img{
     height: 100px;
     width: 100px;
@@ -45,12 +55,7 @@ h1{
     font-family: 'Press Start 2p';
 }
 
-button:active {
-	box-shadow: none;
-	position: relative;
-	top: .6em;
-    background-color: lightgray;
-}
+
 
 .home{
     // scroll-behavior: auto;
@@ -77,3 +82,15 @@ body{
         width: calc(100% - 20px);
     }
 }
+
+$col-primary: #00c7ec;
+$corner-radius: 5px;
+
+body {
+  background-color: #012839;
+  text-align: center;
+  padding-top: 50px;
+}
+
+
+  
