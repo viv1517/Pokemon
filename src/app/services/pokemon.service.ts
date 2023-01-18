@@ -29,14 +29,12 @@ export class PokemonService {
     let offset = (page - 1) * limit
     return this.http.get('https://pokeapi.co/api/v2/pokemon', { params: { offset, limit } }).pipe(
       concatMap((data:any) => {
-        console.log("data: ", data)
         return this.getManySprites(data.results).pipe(map(pokemon => {
           data.result = pokemon;
           return data;
         }));
       }),
       map((data: any) => {
-        console.log("2nd data: ",data);
         let pokemon = data.results.map((current: any) => {
           return new pokemodel(current.name, current.url, current.img);
         })
@@ -50,16 +48,10 @@ export class PokemonService {
   getManySprites(pokeList:any[]): Observable<any[]>{
     return zip(...pokeList.map(pokemon => {
       return this.getImages(pokemon.name).pipe(map(spriteURL => {
-        console.log("url: ", spriteURL);
         pokemon.img = spriteURL
         return pokemon;
       }))
     }));
-  }
-
-  test(){
-    console.log("hello");
-    
   }
 
   getDetails(name: string): Observable<pokedeets> {
@@ -73,16 +65,17 @@ export class PokemonService {
         ));
       }),
       map((item: any) => {
-        console.log("item: ",item)
-        let tempPokeDeet = new pokedeets(item.height, item.name, item.weight, item.id, item.sprites.front_shiny);
-        console.log("These moves: ", item.moves, "item: ", item);
+        let types: string[] = [];
+        item.types.forEach((type:any) =>{
+          types.push(type.type.name);
+        })
+        let tempPokeDeet = new pokedeets(item.height, item.name, item.weight, item.id, item.sprites.front_shiny, [], types);
         item.moves.forEach((move:any) =>{
           const moves = new pokeMoves(move.accuracy, move.power, move.name);
           tempPokeDeet.move.push(moves);
         })
         return tempPokeDeet;
-      }
-      )
+      })
     )
   }
 
@@ -98,9 +91,13 @@ export class PokemonService {
   }
 
   getImages(name: string) {
-    return this.getDetails(name).pipe(map(pokemon => pokemon.image));
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`).pipe(map((item:any) => {
+    
+      let tempPokeDeet = new pokedeets(item.height, item.name, item.weight, item.id, item.sprites.front_shiny);
+      return tempPokeDeet.image;
+    }))
+    // return this.getDetails(name).pipe(map(pokemon => pokemon.image));
     
   }
-
-
+  
 }

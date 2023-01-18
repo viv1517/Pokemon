@@ -1,10 +1,12 @@
-<div *ngIf="pokedeet" class="parent">
+<div *ngIf="pokedeet" class="parent" [ngStyle]="{'background-color':getColor(pokedeet.type[0])}">
     <h1 class="header">{{pokedeet.name | uppercase}} Details:</h1>
     <div class="container">
         <p>Name: {{pokedeet.name}}</p>
         <p>Id: {{pokedeet.id}}</p>
         <p>Weight: {{pokedeet.weight}}</p>
         <p>Height: {{pokedeet.height}}</p>
+        <p>Type:</p>
+        <div class="type-container"><span >{{pokedeet.type[0]}}</span><span *ngIf="pokedeet.type.length > 1">, </span> <span *ngIf="pokedeet.type.length > 1" >{{pokedeet.type[1]}}</span></div>
         <p> <img src = {{pokedeet.image}} alt="sprite"></p>
         <br>
         <br>
@@ -22,4 +24,4 @@
 
 
 
-
+<!-- [ngStyle]="{'color':getColor(pokedeet.type[1])}" -->

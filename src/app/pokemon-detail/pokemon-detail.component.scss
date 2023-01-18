@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 .container{
+    // background-color: white;
     background-color: rgb(200, 252, 135);
     width: 500px;
     display: flex;
@@ -22,8 +23,18 @@
     // top: 50%;
 }
 
+.type-container{
+    background-color: white;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    border-radius: 20px;
+}
+
 .parent{
-    // margin: 100px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;

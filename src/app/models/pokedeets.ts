@@ -8,13 +8,15 @@ export class pokedeets{
     id: number;
     image: string;
     move: pokeMoves[];
-    constructor(height: number, name: string, weight: number, id: number, image: string, move: pokeMoves[] = []){
+    type: string[];
+    constructor(height: number, name: string, weight: number, id: number, image: string, move: pokeMoves[] = [], type: string[] = []){
         this.height = height;
         this.name = name;
         this.weight = weight;
         this.id = id;
         this.image = image;
         this.move = move;
+        this.type = type;
     }
 }
 
