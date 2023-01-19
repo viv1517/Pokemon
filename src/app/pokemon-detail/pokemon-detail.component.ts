@@ -1,12 +1,15 @@
 import { Component, createPlatform, Input } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, map, of, zip, concatMap, tap, takeUntil, Subscription, Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from '../services/pokemon.service';
 import { Pokemon } from '../pokemon';
 import pokeData from "../../pokemon.json";
 import { Location } from '@angular/common';
-import { pokedeets } from '../models/pokedeets';
+import { paginatedMoveModel, pokedeets } from '../models/pokedeets';
 import { pokemodel } from '../models/pokemodel';
+import { ListCardComponent } from '../list-card/list-card.component';
+import { pokeMoves } from '../models/pokeMoves';
 
 
 @Component({
@@ -16,6 +19,9 @@ import { pokemodel } from '../models/pokemodel';
 })
 export class PokemonDetailComponent {
   pokedeet!: pokedeets;
+  movePage!: paginatedMoveModel;
+  paginationData!: {nextLink?: string, prevLink?: string, currentPage: number};
+  unsubscribe$ = new Subject<void>();
   constructor(public pokeSvc: PokemonService,
              private route: ActivatedRoute,
              private location: Location,
@@ -26,6 +32,7 @@ export class PokemonDetailComponent {
     let pokeList: Observable<pokedeets>;
     this.getPoke().subscribe(pokedeets => this.pokedeet = pokedeets);
   }
+
 
   getPoke():Observable<pokedeets>{
     let name = this.route.snapshot.paramMap.get('name') ?? "";
@@ -113,7 +120,9 @@ export class PokemonDetailComponent {
     return "linear-gradient(to bottom right, "+color1 + ", " + color2+")"
    }
   
-      
+  getMoves(){
+    console.log("these are the moves", this.pokedeet.move);
+  }
     
 }
  

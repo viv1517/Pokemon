@@ -7,13 +7,17 @@ import { ListComponent } from './list/list.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './pagination/pagination.component';
+import { ListCardComponent } from './list-card/list-card.component';
+import { MoveCarouselComponent } from './move-carousel/move-carousel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     PokemonDetailComponent,
-    PaginationComponent
+    PaginationComponent,
+    ListCardComponent,
+    MoveCarouselComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+<div class="parent">
+    <div *ngIf="moves" class="move-container">
+        <h3>Move </h3>
+        <p>Name: {{moves[current].name}}</p>
+        <p>Accuracy: {{moves[current].accuracy}}</p>
+        <p>Power: {{moves[current].power}}</p>
+    </div>
+    <app-pagination [currentPage]="current + 1" (prevClicked)="loadPrev()" (nextClicked)="loadNext()"></app-pagination>
+    
+</div>

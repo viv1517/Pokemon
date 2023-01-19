@@ -8,23 +8,13 @@
         <p>Height: {{pokedeet.height}}</p>
         <p>Type:</p>
         <div class="type-container"><span >{{pokedeet.type[0]}}</span><span *ngIf="pokedeet.type.length > 1">, </span> <span *ngIf="pokedeet.type.length > 1" >{{pokedeet.type[1]}}</span></div>
-        <p> <img src = {{pokedeet.image}} alt="sprite"></p>
+        <app-list-card [name]="pokedeet.name" [image]="pokedeet.image" [isDetail]="true"></app-list-card>
         <br>
         <br>
         <br>
-        <div class="move-container">
-            <h3>Move </h3>
-            <p>Name: {{pokedeet.move[0].name}}</p>
-            <p>Accuracy: {{pokedeet.move[0].accuracy}}</p>
-            <p>Power: {{pokedeet.move[0].power}}</p>
-        </div>
-        
+        <app-move-carousel [moves]="pokedeet.move" [last]="pokedeet.move.length - 1"></app-move-carousel>
+
     </div>
     <button type="button" (click)="goBack()">Go Back</button>
     
 </body>
-
-
-<!-- background-image: linear-gradient(to bottom right, red, yellow); -->
-
-<!-- class="parent" -->

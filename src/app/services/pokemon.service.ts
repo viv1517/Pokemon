@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { pokemodel } from '../models/pokemodel';
 import { NgFor } from '@angular/common';
 import { Location } from '@angular/common';
-import { paginatedPokeModel, pokedeets } from '../models/pokedeets';
+import { paginatedMoveModel, paginatedPokeModel, pokedeets } from '../models/pokedeets';
 import { pokeMoves } from '../models/pokeMoves';
 
 @Injectable({
@@ -59,6 +59,8 @@ export class PokemonService {
     return this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`).pipe(
       concatMap((item:any) => {
         return this.getMoves(item.moves).pipe(map(move => {
+          console.log("item", item)
+          console.log("new move", move)
           item.moves = move;
           return item;
         }
@@ -81,6 +83,7 @@ export class PokemonService {
 
   getMoves(moves:any[]){
     return zip(moves.map((move:any) =>{
+      console.log("Move", move)
       return this.getManyMove(move);
       
     }))

@@ -4,12 +4,13 @@
     <div class = 'body'>
         <h1>Pokemon-ish!</h1>
         <div class="container">
-            <button *ngFor="let pokelist of pokemonPage?.pokeList" class="item" routerLink="/details/{{pokelist.name}}" >{{pokelist.name}}<br> <img src = {{pokelist.image}} alt="sprite"></button>
+            <!-- <button *ngFor="let pokelist of pokemonPage?.pokeList" class="item" routerLink="/details/{{pokelist.name}}" >{{pokelist.name}}<br> <img src = {{pokelist.image}} alt="sprite"></button> -->
+            <app-list-card *ngFor="let pokelist of pokemonPage?.pokeList" [name]="pokelist.name" [image]="pokelist.image" [isDetail]="false"></app-list-card>
         </div>
             
-        <app-pagination [currentPage]="paginationData.currentPage" (prevClicked)="loadPrev()" (nextClicked)="loadNext()"></app-pagination>
+        
         <router-outlet></router-outlet>
     </div>
-    
+    <app-pagination [currentPage]="paginationData.currentPage" (prevClicked)="loadPrev()" (nextClicked)="loadNext()"></app-pagination>
 </body>
 

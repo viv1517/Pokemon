@@ -6,6 +6,7 @@ import { paginatedPokeModel, pokedeets } from '../models/pokedeets';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, map, Subscription, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
+import { ListCardComponent } from '../list-card/list-card.component';
 
 @Component({
   selector: 'app-list',
@@ -14,10 +15,10 @@ import { Router } from '@angular/router';
 })
 export class ListComponent {
 
-  pokemonPage?: paginatedPokeModel;
+  pokemonPage!: paginatedPokeModel;
+  pokeCard!: ListCardComponent[];
   pokemonPageSub!: Subscription;
   unsubscribe$ = new Subject<void>();
-  // pokemonPage$!: Subject<paginatedPokeModel>;
   paginationData!: {nextLink?: string, prevLink?: string, currentPage: number};
   constructor(public pokeSvc: PokemonService, 
               private route: ActivatedRoute,
@@ -60,10 +61,9 @@ export class ListComponent {
     this.router.navigate(['.'], {queryParams: {page}});
 
     this.pokemonPageSub = this.pokeSvc.getPokemon(page, limit).pipe(takeUntil(this.unsubscribe$)).subscribe(pokemonPage => {
+      console.log("pokemon page", pokemonPage);
       this.pokemonPage = pokemonPage
-      
     });
     
   }
-
 }

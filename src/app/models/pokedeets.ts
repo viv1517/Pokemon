@@ -33,3 +33,16 @@ export class paginatedPokeModel{
         this.limit = limit;
     }
 }
+
+export class paginatedMoveModel{
+    move:pokeMoves;
+    currentPage: number;
+    count: number;
+    limit: number;
+    constructor(move:pokeMoves, currentPage: number, count: number, limit: number){
+        this.move = move;
+        this.currentPage = currentPage;
+        this.count = count;
+        this.limit = limit;
+    }
+}
