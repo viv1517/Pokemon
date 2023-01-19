@@ -1,4 +1,4 @@
-<body *ngIf="pokedeet"  [ngStyle]="{'background-image':getColorPallate(pokedeet.type)}">
+<div class="parent" *ngIf="pokedeet" [ngStyle]="{'background-image':getColorPallate(pokedeet.type)}">
     
     <h1 class="header">{{pokedeet.name | uppercase}} Details:</h1>
     <div class="container">
@@ -15,6 +15,6 @@
         <app-move-carousel [moves]="pokedeet.move" [last]="pokedeet.move.length - 1"></app-move-carousel>
 
     </div>
-    <button type="button" (click)="goBack()">Go Back</button>
+    <button *ngIf="onDetailsPage" type="button" (click)="goBack()">Go Back</button>
     
-</body>
+</div>

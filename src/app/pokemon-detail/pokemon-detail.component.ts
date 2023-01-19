@@ -20,6 +20,8 @@ import { pokeMoves } from '../models/pokeMoves';
 export class PokemonDetailComponent {
   pokedeet!: pokedeets;
   movePage!: paginatedMoveModel;
+  name?:string = "";
+  
   paginationData!: {nextLink?: string, prevLink?: string, currentPage: number};
   unsubscribe$ = new Subject<void>();
   constructor(public pokeSvc: PokemonService,
@@ -27,15 +29,38 @@ export class PokemonDetailComponent {
              private location: Location,
              private router: Router){
   }
+
+  @Input()
+  pokemon?: any = "";
+
+  @Input()
+  onDetailsPage?: boolean = true;
+  
+
   ngOnInit(): void {
     const page = this.route.snapshot.queryParamMap.get('page');
     let pokeList: Observable<pokedeets>;
-    this.getPoke().subscribe(pokedeets => this.pokedeet = pokedeets);
+    if (this.pokemon !== ""){
+      console.log("pokemon",this.pokemon.pokeName)
+      this.getPoke(this.pokemon.pokeName).subscribe(pokedeets => this.pokedeet = pokedeets);
+    }
+    else{
+      console.log("here")
+      this.getPoke().subscribe(pokedeets => this.pokedeet = pokedeets);
+    }
+    
   }
 
 
-  getPoke():Observable<pokedeets>{
-    let name = this.route.snapshot.paramMap.get('name') ?? "";
+  getPoke(pokeName: string = ""):Observable<pokedeets>{
+    let name = ""
+    if (pokeName !== ""){
+      name = pokeName
+    }
+    else{
+      name = this.route.snapshot.paramMap.get('name') ?? "";
+    }
+    
     let list = this.pokeSvc.getDetails(name);
     return list;
   }
@@ -45,6 +70,9 @@ export class PokemonDetailComponent {
   }
 
   getColorPallate(type: any){
+    if(!this.onDetailsPage){
+      return "transparent";
+    }
     if (type.length == 1){
       let color =  this.getColor(type[0]);
       return "linear-gradient(to bottom right, "+color + ", " + color+")";

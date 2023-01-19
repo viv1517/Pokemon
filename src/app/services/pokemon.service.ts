@@ -6,13 +6,14 @@ import { HttpClient } from '@angular/common/http';
 import { pokemodel } from '../models/pokemodel';
 import { NgFor } from '@angular/common';
 import { Location } from '@angular/common';
-import { paginatedMoveModel, paginatedPokeModel, pokedeets } from '../models/pokedeets';
+import { paginatedMoveModel, paginatedPokeModel, pokedeets, pokeTypeList } from '../models/pokedeets';
 import { pokeMoves } from '../models/pokeMoves';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
+  baseURL: string = 'https://pokeapi.co/api/v2'
 
   constructor(private http: HttpClient, private location: Location) { }
 
@@ -101,6 +102,26 @@ export class PokemonService {
     }))
     // return this.getDetails(name).pipe(map(pokemon => pokemon.image));
     
+  }
+
+  filterByType(type: string) {
+    return this.http.get(`${this.baseURL}/type/${type}`).pipe(map((item: any) => {
+      let pokeList = new pokeTypeList();
+      item.pokemon.forEach((pokemon: any) => {
+        pokeList.pokemonOfType?.push(pokemon.pokemon.name);
+        // console.log("pokemon name", pokemon.pokemon.name);
+      })
+      console.log("This is my pokelist", pokeList);
+      return pokeList;
+    }))
+
+
+  }
+
+  getTypes(type:string){
+    let names: string[] = [];
+    return this.filterByType(type);
+
   }
   
 }

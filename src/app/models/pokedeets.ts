@@ -46,3 +46,11 @@ export class paginatedMoveModel{
         this.limit = limit;
     }
 }
+
+export class pokeTypeList{
+    pokemonOfType?: string[];
+
+    constructor(pokemonOfType: string[] = []){
+        this.pokemonOfType = pokemonOfType;
+    }
+}

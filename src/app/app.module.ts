@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ListCardComponent } from './list-card/list-card.component';
 import { MoveCarouselComponent } from './move-carousel/move-carousel.component';
+import { PokeDropdownComponent } from './poke-dropdown/poke-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MoveCarouselComponent } from './move-carousel/move-carousel.component';
     PokemonDetailComponent,
     PaginationComponent,
     ListCardComponent,
-    MoveCarouselComponent
+    MoveCarouselComponent,
+    PokeDropdownComponent
   ],
   imports: [
     BrowserModule,
