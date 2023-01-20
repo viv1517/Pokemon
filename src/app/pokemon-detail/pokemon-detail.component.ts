@@ -1,4 +1,4 @@
-import { Component, createPlatform, Input } from '@angular/core';
+import { Component, createPlatform, Input, SimpleChange, SimpleChanges } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Observable, map, of, zip, concatMap, tap, takeUntil, Subscription, Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -35,6 +35,16 @@ export class PokemonDetailComponent {
 
   @Input()
   onDetailsPage?: boolean = true;
+
+  // @Input() set calendar(value: number) {
+  //       this._calendar = value;
+  //       // Refresh the calendar when a value changes        
+  //   };
+
+  ngOnChanges(changes: SimpleChanges){
+    console.log(changes);
+    this.ngOnInit();
+  }
   
 
   ngOnInit(): void {
