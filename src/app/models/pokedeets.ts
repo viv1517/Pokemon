@@ -54,3 +54,11 @@ export class pokeTypeList{
         this.pokemonOfType = pokemonOfType;
     }
 }
+
+export class pokeGenList{
+    pokemonOfGen?: string[];
+
+    constructor(pokemonOfType: string[] = []){
+        this.pokemonOfGen = pokemonOfType;
+    }
+}

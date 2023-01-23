@@ -36,11 +36,6 @@ export class PokemonDetailComponent {
   @Input()
   onDetailsPage?: boolean = true;
 
-  // @Input() set calendar(value: number) {
-  //       this._calendar = value;
-  //       // Refresh the calendar when a value changes        
-  //   };
-
   ngOnChanges(changes: SimpleChanges){
     console.log(changes);
     this.ngOnInit();
@@ -51,7 +46,7 @@ export class PokemonDetailComponent {
     const page = this.route.snapshot.queryParamMap.get('page');
     let pokeList: Observable<pokedeets>;
     if (this.pokemon !== ""){
-      console.log("pokemon",this.pokemon.pokeName)
+      console.log("pokemon 49",this.pokemon.pokeName)
       this.getPoke(this.pokemon.pokeName).subscribe(pokedeets => this.pokedeet = pokedeets);
     }
     else{

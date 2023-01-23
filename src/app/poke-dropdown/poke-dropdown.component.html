@@ -22,23 +22,28 @@
           <option value="steel">Steel</option>
           <option value="water">Water</option>
         </select>
-        <!-- <br><br> -->
+
+        <label for="generation">Choose a generation:</label>
+        <select name="generation" id="generation" #gen (change)="onGenSelect(gen.value)">
+         <option default>Pick a generation</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
+        
         <label for="pokeType" class="second-box">Choose a pokemon:</label>
         <select name="pokeType" id="pokeType" #name (change)="onNameSelected(name.value)">
-         <option default>Pick a type</option>
-        <option *ngFor="let name of types" value="{{name}}">{{name}}</option>
+         <option default>Pick a pokemon</option>
+        <option *ngFor="let name of namesToDispaly" value="{{name}}">{{name}}</option>
         </select>
         <br><br>
     </form>
-    
-    <!-- second drop down -->
-    <form >
-        
-        
-    </form>
-    <app-pokemon-detail *ngIf="readyToLoad" [pokemon]="{pokeName}" [onDetailsPage]="false" (change)="getChanged()"></app-pokemon-detail>
-    
-    
-    
-    
+   
+    <app-pokemon-detail *ngIf="readyToLoad" [pokemon]="{pokeName}" [onDetailsPage]="false" ></app-pokemon-detail>
 </div>

@@ -109,9 +109,7 @@ export class PokemonService {
       let pokeList = new pokeTypeList();
       item.pokemon.forEach((pokemon: any) => {
         pokeList.pokemonOfType?.push(pokemon.pokemon.name);
-        // console.log("pokemon name", pokemon.pokemon.name);
       })
-      console.log("This is my pokelist", pokeList);
       return pokeList;
     }))
 
@@ -122,6 +120,22 @@ export class PokemonService {
     let names: string[] = [];
     return this.filterByType(type);
 
+  }
+
+  getGeneration(generation: string){
+    let names: string[] = [];
+  }
+
+  filterByGen(gen:string){
+    return this.http.get(`https://pokeapi.co/api/v2/generation/${gen}`).pipe(map((item:any) =>{
+      let pokeList = new pokeTypeList();
+      console.log("item", item.pokemon_species[0].name);
+      item.pokemon_species.forEach((pokemon:any) => {
+        console.log("pokemon", pokemon)
+        pokeList.pokemonOfType?.push(pokemon.name);
+      })
+      return pokeList;
+    }));
   }
   
 }

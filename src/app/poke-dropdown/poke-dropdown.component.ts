@@ -16,16 +16,18 @@ export class PokeDropdownComponent {
   types: string[] = []
   pokeName: string = '';
   readyToLoad: boolean = false;
+  /////////////
+  genNames:string[] = [];
+  // readyToLoad: boolean = false;
+  generation: string ='';
+  genList!: any;
+  genPokeName: string = '';
+  namesToDispaly: string[] = [];
+  
 
   constructor(public pokeSvc: PokemonService,
               private route: ActivatedRoute,
               private router: Router){}
-
-  // ngOnInit(){
-  //   let typeList = this.pokeSvc.filterByType("water").subscribe();
-  //   console.log(typeList)
-  // }
-
 
   onTypeSelected(type:string): void {
     this.types = [];
@@ -36,31 +38,46 @@ export class PokeDropdownComponent {
         this.types.push(name);
       })
     });
-    console.log("type", this.types);
+  
 	}
-
-  getType(){
-    console.log("type", this.type)
-  }
-
-  // onNameSelected(name:string): void {
-	// 	this.pokeName = name;
-  //   console.log("name", this.pokeName);
-  //   this.readyToLoad=true;
-	// }
+  
 
   onNameSelected(name:string): void {
    this.pokeName = name;
-   this.router.navigate(
-     ['/drop'],
-     { queryParams: { dropName: this.pokeName} }
-   );
-   console.log("name", this.pokeName);
    this.readyToLoad=true;
  }
 
- getChanged(){
+  onGenSelect(gen: string): void{
+    this.genNames = [];
+    this.readyToLoad=false;
+    this.generation = gen;
+    this.genList = this.pokeSvc.filterByGen(gen).subscribe((name:any) =>{
+        console.log("name", name)
+        name.pokemonOfType.forEach((name:any) => {
+          if (this.types.length > 0){
+            if(Object.values(this.types).includes(name)){
+              this.genNames.push(name);
+              console.log("foundName", name);
+            }
+            if (name in this.types){
+              console.log("In list", name);
+              this.genNames.push(name);
+            }
+            else{
+              console.log("Not in list", name)
+            }
+          }
+          else{
+            this.genNames.push(name);
+          }
+        })
+        console.log("name",name)
+      })
+    
+    console.log("genNames", this.genNames);
+    this.namesToDispaly = this.genNames;
+  }
 
- }
+
 }
 

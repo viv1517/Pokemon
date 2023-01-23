@@ -10,6 +10,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { ListCardComponent } from './list-card/list-card.component';
 import { MoveCarouselComponent } from './move-carousel/move-carousel.component';
 import { PokeDropdownComponent } from './poke-dropdown/poke-dropdown.component';
+import { GenerationSortComponent } from './generation-sort/generation-sort.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PokeDropdownComponent } from './poke-dropdown/poke-dropdown.component';
     PaginationComponent,
     ListCardComponent,
     MoveCarouselComponent,
-    PokeDropdownComponent
+    PokeDropdownComponent,
+    GenerationSortComponent
   ],
   imports: [
     BrowserModule,
